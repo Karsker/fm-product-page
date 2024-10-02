@@ -137,7 +137,7 @@ function updateCart() {
     let checkoutBtn = document.createElement('div');
     checkoutBtn.innerHTML = `<button
             class="bg-[#ff7d1a] w-full hover:bg-orange-300 p-3 rounded-md font-bold shadow-md"
-            onclick="addToCart(1)"
+            "
           >
             Checkout
           </button>`
