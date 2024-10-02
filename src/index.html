@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link href="./output.css" rel="stylesheet" />
+    <title>Frontend Mentor Product Page</title>
+  </head>
+  <body class="font-['Kumbh Sans'] relative">
+    <!-- Navigation Bar -->
+    <nav class="flex px-5 py-5 lg:px-20 gap-2 items-center justify-between">
+      <!-- Menu icon and logo -->
+      <div class="flex gap-3 items-center">
+        <button onclick="toggleSidebar()" class="lg:hidden">
+          <img
+            src="assets/images/icons/menu.png"
+            alt="menu-icon"
+            class="size-8"
+          />
+        </button>
+        <img
+          src="assets/images/sneaker-logo.png"
+          alt="sneaker-logo"
+          class="h-10"
+        />
+
+        <!-- Links -->
+        <div
+          id="nav-links"
+          class="absolute lg:relative h-screen lg:h-fit left-[-100%] lg:left-0 top-0 w-72 z-30 bg-white lg:bg-transparent p-5"
+        >
+          <!-- Button to close the sidebar -->
+          <button onclick="toggleSidebar()" class="lg:hidden">
+            <img
+              src="assets/images/icons/close-black.png"
+              alt="close-button"
+              class="size-6"
+            />
+          </button>
+          <ul class="list-none lg:flex lg:gap-10">
+            <li
+              class="text-xl lg:text-lg lg:text-stone-400 hover:text-black hover:cursor-pointer font-bold lg:font-medium my-5 lg:my-0"
+            >
+              Collections
+            </li>
+            <li
+              class="text-xl lg:text-lg lg:text-stone-400 hover:text-black hover:cursor-pointer font-bold lg:font-medium my-5 lg:my-0"
+            >
+              Men
+            </li>
+            <li
+              class="text-xl lg:text-lg lg:text-stone-400 hover:text-black hover:cursor-pointer font-bold lg:font-medium my-5 lg:my-0"
+            >
+              Women
+            </li>
+            <li
+              class="text-xl lg:text-lg lg:text-stone-400 hover:text-black hover:cursor-pointer font-bold lg:font-medium my-5 lg:my-0"
+            >
+              About
+            </li>
+            <li
+              class="text-xl lg:text-lg lg:text-stone-400 hover:text-black hover:cursor-pointer font-bold lg:font-medium my-5 lg:my-0"
+            >
+              Contact
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Cart and user icons -->
+      <div class="flex gap-3">
+        <button onclick="toggleDisplayCart()">
+          <img
+            src="assets/images/icons/cart.png"
+            alt="cart-icon"
+            class="size-8"
+          />
+        </button>
+        <img
+          src="assets/images/icons/user.png"
+          alt="user-icon"
+          class="size-8"
+        />
+      </div>
+    </nav>
+    <hr class="hidden lg:block mx-20" />
+    <main
+      class="relative lg:flex lg:my-10 mx-auto lg:gap-5 lg:justify-center items-center"
+    >
+      <!-- Product images carousel -->
+      <div>
+        <div id="carousel" class="relative">
+          <div
+            class="carouselImage hidden animate-fade lg:w-96"
+            onclick="toggleLightboxGallery()"
+          >
+            <img
+              src="assets/images/sneakers/image-product-1.jpg"
+              alt="sneakers-image-1"
+              class="w-full lg:rounded-xl"
+            />
+          </div>
+
+          <div
+            class="carouselImage hidden animate-fade lg:w-96"
+            onclick="toggleLightboxGallery()"
+          >
+            <img
+              src="assets/images/sneakers/image-product-2.jpg"
+              alt="sneakers-image-2"
+              class="w-full lg:rounded-xl"
+            />
+          </div>
+
+          <div
+            class="carouselImage hidden animate-fade lg:w-96"
+            onclick="toggleLightboxGallery()"
+          >
+            <img
+              src="assets/images/sneakers/image-product-3.jpg"
+              alt="sneakers-image-3"
+              class="w-full lg:rounded-xl"
+            />
+          </div>
+
+          <div
+            class="carouselImage hidden animate-fade lg:w-96"
+            onclick="toggleLightboxGallery()"
+          >
+            <img
+              src="assets/images/sneakers/image-product-4.jpg"
+              alt="sneakers-image-4"
+              class="w-full lg:rounded-xl"
+            />
+          </div>
+
+          <!-- Buttons for controlling the carousel -->
+          <button
+            id="btnCarouselPrev"
+            class="absolute lg:hidden top-1/2 left-3 bg-white rounded-full w-10"
+            onclick="updateImage(-1)"
+          >
+            <img src="assets/images/icons/chevron-left.png" alt="prev-icon" />
+          </button>
+
+          <button
+            id="btnCarouselNext"
+            class="absolute lg:hidden top-1/2 right-3 bg-white rounded-full w-10"
+            onclick="updateImage(1)"
+          >
+            <img src="assets/images/icons/chevron-right.png" alt="next-icon" />
+          </button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="hidden lg:flex gap-4 mt-4 justify-evenly">
+          <button
+            class="w-16 rounded-lg thumbnail-button"
+            onclick="thumbnailHandler(0)"
+          >
+            <img
+              src="assets/images/sneakers/thumbnails/image-product-1-thumbnail.jpg"
+              alt=""
+              class="rounded-lg"
+            />
+          </button>
+
+          <button
+            class="w-16 rounded-lg thumbnail-button"
+            onclick="thumbnailHandler(1)"
+          >
+            <img
+              src="assets/images/sneakers/thumbnails/image-product-2-thumbnail.jpg"
+              alt=""
+              class="rounded-lg"
+            />
+          </button>
+
+          <button
+            class="w-16 rounded-lg thumbnail-button"
+            onclick="thumbnailHandler(2)"
+          >
+            <img
+              src="assets/images/sneakers/thumbnails/image-product-3-thumbnail.jpg"
+              alt=""
+              class="rounded-lg"
+            />
+          </button>
+
+          <button
+            class="w-16 rounded-lg thumbnail-button"
+            onclick="thumbnailHandler(3)"
+          >
+            <img
+              src="assets/images/sneakers/thumbnails/image-product-4-thumbnail.jpg"
+              alt=""
+              class="rounded-lg"
+            />
+          </button>
+        </div>
+      </div>
+
+      <!-- Product details -->
+      <div
+        id="divProductDetails"
+        class="p-5 flex flex-col gap-5 w-full lg:w-1/3 lg:max-w-3xl"
+      >
+        <span class="font-medium text-sm text-stone-500">SNEAKER COMPANY</span>
+
+        <span class="font-bold text-3xl"> Fall Limited Edition Sneakers </span>
+
+        <p class="text-stone-400 space-y-2 font-medium">
+          These low-profile sneakers are your perfect casual wear companian.
+          Featuring a durable rubber outer sole, they'll withstand everything
+          the weather can offer.
+        </p>
+
+        <!-- Price -->
+        <div class="flex justify-between lg:flex-col">
+          <span id="spanRetailPrice" class="font-bold text-3xl">
+            $125.00
+            <span class="bg-black p-1 px-2 rounded-lg text-white text-xl"
+              >50%</span
+            ></span
+          >
+          <span
+            id="spanOrigPrice"
+            class="font-bold text-2xl text-stone-500 line-through"
+          >
+            $250
+          </span>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-2">
+          <!-- Items count -->
+
+          <div
+            class="flex bg-stone-100 gap-8 w-full lg:w-fit justify-around font-bold px-3 py-2 rounded-md"
+          >
+            <button onclick="changeCnt(-1)">
+              <img
+                src="assets/images/icons/remove.png"
+                alt="decrement-icon"
+                class="size-4"
+              />
+            </button>
+            <span id="spanItemCount">0</span>
+            <button onclick="changeCnt(1)">
+              <img
+                src="assets/images/icons/add.png"
+                alt="increment-icon"
+                class="size-4"
+              />
+            </button>
+          </div>
+          <button
+            class="bg-[#ff7d1a] w-full lg:w-40 hover:bg-orange-300 p-3 rounded-md font-bold shadow-md"
+            onclick="addToCart(1)"
+          >
+            <img
+              src="assets/images/icons/cart.png"
+              alt=""
+              class="size-5 inline"
+            />
+            Add to cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart Overlay -->
+      <div
+        id="divCartMobile"
+        class="flex flex-col hidden gap-3 w-11/12 lg:w-96 absolute h-30 top-2 bg-white rounded-xl z-10 shadow-lg p-5 left-0 right-0 m-auto animate-fade lg:right-5 lg:left-auto"
+      >
+        <h1 class="text-2xl font-bold">Cart</h1>
+        <hr />
+        <!-- Cart items -->
+        <div id="divCartItems" class="flex flex-col items-center gap-2">
+          <span class="font-bold text-stone-500"> Your cart is empty. </span>
+          
+        </div>
+      </div>
+    </main>
+
+    <!-- Lightbox gallery -->
+    <div
+      id="lightbox-gallery"
+      class="absolute z-10 w-full h-screen top-0 flex flex-col items-center justify-center hidden bg-black/70"
+    >
+      <!-- Product images carousel -->
+      <div class="relative">
+        <!-- Button for closing the lightbox -->
+        <button
+          class="z-20 relative float-end"
+          onclick="toggleLightboxGallery()"
+        >
+          <img
+            src="assets/images/icons/close.png"
+            alt="close-icon"
+            class="size-8"
+          />
+        </button>
+
+        <div class="relative">
+          <div class="lightbox-image animate-fade w-[30rem]">
+            <img
+              src="assets/images/sneakers/image-product-1.jpg"
+              alt="sneakers-image-1"
+              class="w-full lg:rounded-xl"
+            />
+          </div>
+
+          <div class="lightbox-image hidden animate-fade w-[30rem]">
+            <img
+              src="assets/images/sneakers/image-product-2.jpg"
+              alt="sneakers-image-2"
+              class="w-full lg:rounded-xl"
+            />
+          </div>
+
+          <div class="lightbox-image hidden animate-fade w-[30rem]">
+            <img
+              src="assets/images/sneakers/image-product-3.jpg"
+              alt="sneakers-image-3"
+              class="w-full lg:rounded-xl"
+            />
+          </div>
+
+          <div class="lightbox-image hidden animate-fade w-[30rem]">
+            <img
+              src="assets/images/sneakers/image-product-4.jpg"
+              alt="sneakers-image-4"
+              class="w-full lg:rounded-xl"
+            />
+          </div>
+
+          <!-- Buttons for controlling the carousel -->
+          <button
+            class="absolute top-1/2 left-3 bg-white rounded-full w-10"
+            onclick="updateLightbox(-1)"
+          >
+            <img src="assets/images/icons/chevron-left.png" alt="prev-icon" />
+          </button>
+
+          <button
+            class="absolute top-1/2 right-3 bg-white rounded-full w-10"
+            onclick="updateLightbox(1)"
+          >
+            <img src="assets/images/icons/chevron-right.png" alt="next-icon" />
+          </button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="flex gap-4 mt-4 justify-evenly">
+          <button
+            class="w-16 rounded-lg lightbox-thumbnail-button"
+            onclick="lightboxThumbnailHandler(0)"
+          >
+            <img
+              src="assets/images/sneakers/thumbnails/image-product-1-thumbnail.jpg"
+              alt=""
+              class="rounded-lg"
+            />
+          </button>
+
+          <button
+            class="w-16 rounded-lg lightbox-thumbnail-button"
+            onclick="lightboxThumbnailHandler(1)"
+          >
+            <img
+              src="assets/images/sneakers/thumbnails/image-product-2-thumbnail.jpg"
+              alt=""
+              class="rounded-lg"
+            />
+          </button>
+
+          <button
+            class="w-16 rounded-lg lightbox-thumbnail-button"
+            onclick="lightboxThumbnailHandler(2)"
+          >
+            <img
+              src="assets/images/sneakers/thumbnails/image-product-3-thumbnail.jpg"
+              alt=""
+              class="rounded-lg"
+            />
+          </button>
+
+          <button
+            class="w-16 rounded-lg lightbox-thumbnail-button"
+            onclick="lightboxThumbnailHandler(3)"
+          >
+            <img
+              src="assets/images/sneakers/thumbnails/image-product-4-thumbnail.jpg"
+              alt=""
+              class="rounded-lg"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
